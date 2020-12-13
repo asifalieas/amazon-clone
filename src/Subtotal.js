@@ -5,20 +5,19 @@ import "./Subtotal.css";
 
 function Subtotal() {
   const [{ basket }, dispatch] = useStateValue();
-  const totalPrice = 0;
-  function findTotal() {
-    basket.forEach((element) => {
-      totalPrice = totalPrice + element.price;
-    });
-    return totalPrice;
-  }
+  let totalPrice = 0;
+
+  basket.forEach((element) => {
+    totalPrice += element.price;
+  });
+
   return (
     <div className="subtotal">
       <CurrencyFormat
         renderText={(value) => (
           <>
             <p>
-              Subtotal({basket?.length} items):<strong>{findTotal}</strong>
+              Subtotal({basket?.length} items):<strong>{totalPrice}</strong>
             </p>
 
             <small className="subtotal__gift">
